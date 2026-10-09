@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bmi result</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <h1>BMI Result</h1>
+      
+            <p id="para"></p>
+        
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get('name');
+        const bmi = params.get('bmi');
+        const status = params.get('status');
+
+        if (name && bmi && status) {
+            document.getElementById('para').innerHTML = "Hello " + name + ", your BMI is " + bmi + " and " + status + ".";
+        } else {
+            document.getElementById('para').innerHTML = "No BMI result found. Please submit the form first.";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>student dashboard </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar">
+        <h2>student dashboard</h2>
+        <ul class="tags">
+            <li><a href="#">home</a></li>
+            <li><a href="#">about</a></li>
+            <li><a href="#">contact</a></li>
+        </ul>
+    </nav>
+    <div class="buttons">
+        <button class="btn btn-primary" id="openBtn">add</button>
+        <button class="btn btn-primary" id="viewBtn">view</button>
+    </div>
+    <div class="overlay-content" id="popupModal">
+        <div class="modal-box">
+            <h3>Add Student Details</h3>
+            <p>Enter the details or content here...</p>
+            <form id="details">
+                <table>
+                    <tr>
+                        <td>
+                            <label for="">name</label><br>
+                        </td>
+                        <td>
+                            <input type="text" placeholder="enter name" id="name">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="">email</label><br>
+                        </td>
+                        <td>
+                            <input type="email" placeholder="enter email" id="email">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="">phone</label><br>
+                        </td>
+                        <td>
+                            <input type="number" placeholder="enter phone" id="phn">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="">address</label><br>
+                        </td>
+                        <td>
+                            <input type="text" placeholder="enter address" id="addr">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <button class="btn btn-success" id="doneBtn">Done</button>
+        </div>
+    </div>
+    <div class="overlay-content" id="viewDetailsModal">
+        <div class="modal-box">
+            <h3>Student Details</h3>
+            <div id="viewStudentContent" class="student-details-content my-3"></div>
+            <button class="btn btn-secondary" id="closeViewBtn">Close</button>
+        </div>
+    </div>
+    <div class="container" id="studentContainer">
+        
+    </div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>

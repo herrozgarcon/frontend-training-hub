@@ -1,0 +1,144 @@
+.navbar{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    border: solid;
+    border-color: black;
+    text-align: center;
+    box-shadow: inset;
+    
+}
+
+.tags{
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    justify-content: flex-end;
+}
+.buttons{
+    padding-right: 10px;
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+.container{
+    height: 100vh;
+    max-height: 700px;
+    width: 80%;
+    border: solid;
+    border-color: black;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    gap: 12px;
+    overflow-y: auto;
+}
+.overlay-content{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+    backdrop-filter: blur(4px);      /* modern blur effect */
+    display: none;                    /* hidden by default */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+}
+.modal-box {
+    background: #ffffff;
+    padding: 24px 32px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    min-width: 320px;
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    max-height: 500px;
+    overflow-y: scroll;
+}
+.overlay-content.active {
+    display: flex;
+}
+.modal-box p,h3{    
+    text-align: left;
+}
+
+/* Ribbon Card Styles */
+.empty-text {
+    margin-top: 40px;
+    font-size: 1.1rem;
+    color: #6c757d;
+}
+
+.student-ribbon {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-left: 8px solid #007bff;
+    border-radius: 8px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.student-ribbon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.ribbon-badge {
+    background: #007bff;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.ribbon-details {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.ribbon-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #212529;
+    text-transform: capitalize;
+}
+
+.ribbon-email {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.ribbon-actions {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.student-details-content {
+    text-align: left;
+    background: #f8f9fa;
+    padding: 16px 20px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.student-details-content p {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #333;
+}
+

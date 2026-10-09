@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>billing</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+    <div class="heading">
+        <center><h1>Billing software</h1></center>
+    </div>
+    <div class="container">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search products..." autocomplete="off">
+            <ul id="productList"></ul>
+        </div>
+        <div class="cart" id="cartContainer">
+            <div class="cart-header">
+                <h5>Cart</h5>
+                <span id="cartCount" class="badge bg-secondary">0 items</span>
+            </div>
+            <div id="cartItems" class="cart-items">
+                <div class="empty-cart-message">No items in cart. Search and select items to add.</div>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total-row">
+                    <span>Total:</span>
+                    <strong id="cartTotal">₹0</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="final-btns">
+        <button id="printBtn" class="btn btn-primary">Print Bill</button>
+        <button id="clearCartBtn" class="btn btn-danger">Clear Cart</button>
+    </div>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>

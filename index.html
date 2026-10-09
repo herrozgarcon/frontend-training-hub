@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HCL Web Development Training Projects Hub - Collection of frontend web applications and replicas by Hrithik Kumar K">
+  <title>HCL Training Projects Portal | Hrithik Kumar K</title>
+  
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-primary: #0a0e17;
+      --bg-secondary: #111827;
+      --bg-card: rgba(17, 24, 39, 0.7);
+      --border-card: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(59, 130, 246, 0.4);
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.25);
+      --accent-gradient: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --badge-bg: rgba(59, 130, 246, 0.12);
+      --badge-text: #60a5fa;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 75%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* Header */
+    header {
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-card);
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-badge i {
+      color: var(--accent);
+      font-size: 1.3rem;
+    }
+
+    .profile-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.15rem;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      border: 1px solid var(--border-card);
+      transition: all 0.2s ease;
+    }
+
+    .profile-link:hover {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .gradient-text {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 680px;
+      margin-bottom: 2rem;
+    }
+
+    /* Controls Bar */
+    .controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      border: 1px solid var(--border-card);
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 0.65rem 1.15rem;
+      border-radius: 10px;
+      border: 1px solid var(--border-card);
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .search-box i {
+      color: var(--text-muted);
+    }
+
+    .search-box input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text-main);
+      width: 100%;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .filter-btn.active {
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-hover);
+      box-shadow: 0 16px 32px -8px var(--accent-glow);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      color: var(--accent);
+    }
+
+    .category-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.3rem 0.75rem;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      color: #d1d5db;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: auto;
+      border-top: 1px solid var(--border-card);
+      padding-top: 1.25rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.25rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      flex: 1;
+    }
+
+    .btn-launch {
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-launch:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border: 1px solid var(--border-card);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-card);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .controls-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .filter-tabs {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="top-bar">
+        <div class="logo-badge">
+          <i class="fa-solid fa-layer-group"></i>
+          <span>HCL Training Hub</span>
+        </div>
+        <a href="https://github.com/herrozgarcon" target="_blank" class="profile-link">
+          <i class="fa-brands fa-github"></i>
+          <span>@herrozgarcon</span>
+          <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.75rem;"></i>
+        </a>
+      </div>
+
+      <h1 class="hero-title">
+        Web Development &amp; <br><span class="gradient-text">Project Showcase</span>
+      </h1>
+      <p class="hero-subtitle">
+        An organized central catalog of all projects, web applications, and clones developed during HCL training. Click any project below to launch the live preview or explore the source.
+      </p>
+
+      <div class="controls-bar">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Search projects by name or technology...">
+        </div>
+        <div class="filter-tabs">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="app">Web Apps</button>
+          <button class="filter-btn" data-filter="clone">UI Clones</button>
+          <button class="filter-btn" data-filter="portfolio">Portfolio</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="projects-grid" id="projectsGrid">
+
+      <!-- Project 1: Portfolio -->
+      <article class="project-card" data-category="portfolio" data-name="portfolio developer personal hrithik">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fa-solid fa-user-tie"></i>
+          </div>
+          <span class="category-badge">Portfolio</span>
+        </div>
+        <h2 class="card-title">Developer Portfolio</h2>
+        <p class="card-desc">
+          Professional personal portfolio website featuring technical skills, interactive project showcase, engineering biography, and contact sections with rich modern typography.
+        </p>
+        <div class="tag-list">
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+          <span class="tag">Inter &amp; Jakarta</span>
+          <span class="tag">FontAwesome</span>
+        </div>
+        <div class="card-actions">
+          <a href="./html/portfolio/index.html" class="btn btn-launch">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open App
+          </a>
+          <a href="https://github.com/herrozgarcon/hcl-training/tree/main/html/portfolio" target="_blank" class="btn btn-secondary">
+            <i class="fa-solid fa-code"></i> Source
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 2: Student Dashboard -->
+      <article class="project-card" data-category="app" data-name="student dashboard management modal bootstrap">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <span class="category-badge">Web App</span>
+        </div>
+        <h2 class="card-title">Student Dashboard</h2>
+        <p class="card-desc">
+          Interactive student management portal with dynamic modal dialogs to capture student details (name, email, phone, address), responsive layout, and list view.
+        </p>
+        <div class="tag-list">
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Bootstrap 4</span>
+        </div>
+        <div class="card-actions">
+          <a href="./html/student dashboard/index.html" class="btn btn-launch">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open App
+          </a>
+          <a href="https://github.com/herrozgarcon/hcl-training/tree/main/html/student%20dashboard" target="_blank" class="btn btn-secondary">
+            <i class="fa-solid fa-code"></i> Source
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 3: Billing Software -->
+      <article class="project-card" data-category="app" data-name="billing generator pos software invoice cart">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fa-solid fa-receipt"></i>
+          </div>
+          <span class="category-badge">Web App</span>
+        </div>
+        <h2 class="card-title">Billing &amp; POS Software</h2>
+        <p class="card-desc">
+          Point of Sale invoice generator with live product search, dynamic cart state management, quantity calculations, total computation, and print billing functionality.
+        </p>
+        <div class="tag-list">
+          <span class="tag">HTML5</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Bootstrap 5</span>
+          <span class="tag">Print API</span>
+        </div>
+        <div class="card-actions">
+          <a href="./html/biiling_gen/index.html" class="btn btn-launch">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open App
+          </a>
+          <a href="https://github.com/herrozgarcon/hcl-training/tree/main/html/biiling_gen" target="_blank" class="btn btn-secondary">
+            <i class="fa-solid fa-code"></i> Source
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 4: Netflix Replica -->
+      <article class="project-card" data-category="clone" data-name="netflix clone replica streaming landing">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fa-solid fa-film"></i>
+          </div>
+          <span class="category-badge">UI Clone</span>
+        </div>
+        <h2 class="card-title">Netflix Homepage Replica</h2>
+        <p class="card-desc">
+          Precision clone of the Netflix streaming landing page featuring header brand identity, multi-language selector dropdown, email lead capture hero, and media cards.
+        </p>
+        <div class="tag-list">
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+          <span class="tag">Flexbox</span>
+          <span class="tag">Media Queries</span>
+        </div>
+        <div class="card-actions">
+          <a href="./html/task1_netflix_replica/index.html" class="btn btn-launch">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open App
+          </a>
+          <a href="https://github.com/herrozgarcon/hcl-training/tree/main/html/task1_netflix_replica" target="_blank" class="btn btn-secondary">
+            <i class="fa-solid fa-code"></i> Source
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 5: Apple Replica -->
+      <article class="project-card" data-category="clone" data-name="apple clone webreplica store iphone mac">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fa-brands fa-apple"></i>
+          </div>
+          <span class="category-badge">UI Clone</span>
+        </div>
+        <h2 class="card-title">Apple Website Replica</h2>
+        <p class="card-desc">
+          Modern recreation of the official Apple homepage featuring global navigation, product showcase banners (iPhone, Mac, iPad), and minimalist aesthetic typography.
+        </p>
+        <div class="tag-list">
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+          <span class="tag">Bootstrap 5</span>
+          <span class="tag">Bootstrap Icons</span>
+        </div>
+        <div class="card-actions">
+          <a href="./html/webreplica/index.html" class="btn btn-launch">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open App
+          </a>
+          <a href="https://github.com/herrozgarcon/hcl-training/tree/main/html/webreplica" target="_blank" class="btn btn-secondary">
+            <i class="fa-solid fa-code"></i> Source
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 6: JS Mini Apps -->
+      <article class="project-card" data-category="app" data-name="javascript mini apps bmi calculator map array methods">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fa-brands fa-square-js"></i>
+          </div>
+          <span class="category-badge">Mini Apps</span>
+        </div>
+        <h2 class="card-title">JavaScript Mini-Projects</h2>
+        <p class="card-desc">
+          Collection of core JavaScript exercises and utilities including an interactive BMI Calculator with health status evaluation, results routing, and array transformation demos.
+        </p>
+        <div class="tag-list">
+          <span class="tag">JavaScript</span>
+          <span class="tag">DOM API</span>
+          <span class="tag">Form Validation</span>
+          <span class="tag">Array Methods</span>
+        </div>
+        <div class="card-actions">
+          <a href="./html/js/index.html" class="btn btn-launch">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open App
+          </a>
+          <a href="https://github.com/herrozgarcon/hcl-training/tree/main/html/js" target="_blank" class="btn btn-secondary">
+            <i class="fa-solid fa-code"></i> Source
+          </a>
+        </div>
+      </article>
+
+    </main>
+
+    <footer>
+      <p>
+        Crafted by <a href="https://github.com/herrozgarcon" target="_blank">Hrithik Kumar K</a> &bull; HCL Training Repository
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.project-card');
+
+    let currentFilter = 'all';
+
+    function filterCards() {
+      const query = searchInput.value.toLowerCase().trim();
+
+      cards.forEach(card => {
+        const matchesCategory = currentFilter === 'all' || card.dataset.category === currentFilter;
+        const matchesSearch = !query || card.dataset.name.toLowerCase().includes(query) || card.textContent.toLowerCase().includes(query);
+
+        if (matchesCategory && matchesSearch) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.filter;
+        filterCards();
+      });
+    });
+
+    searchInput.addEventListener('input', filterCards);
+  </script>
+</body>
+</html>

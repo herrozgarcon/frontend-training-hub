@@ -1,0 +1,32 @@
+.container{
+    
+    height: 50vh;
+    width:50vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    margin-left: 35%;
+    margin-top: 10%;
+    border-radius: 15%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+}
+.btn{
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+}
+.btn button{
+    font-size: 30px;
+    width: 150px;
+    border-radius: 10px;
+}
+.main h1{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
