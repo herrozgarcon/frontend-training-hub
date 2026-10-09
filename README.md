@@ -27,7 +27,7 @@ This repository is organized to provide seamless future access, fast local devel
 ## 🗂️ Repository Structure
 
 ```text
-hcl-training/
+frontend-training-hub/
 ├── index.html                   # 🌐 Interactive Project Showcase Portal
 ├── README.md                    # 📖 Master Documentation & Guide
 ├── .gitignore                   # 🛡️ Git ignore configuration
@@ -102,13 +102,13 @@ Simply double-click [`index.html`](./index.html) to open the interactive portal 
 ## 🌐 Deploy to GitHub Pages (Live Online)
 
 To make all these projects accessible via a public web link anytime:
-1. Go to your repository on GitHub: `https://github.com/herrozgarcon/hcl-training`
+1. Go to your repository on GitHub: `https://github.com/herrozgarcon/frontend-training-hub`
 2. Click **Settings** > **Pages** (under Code and automation).
 3. Under **Branch**, select `main` and folder `/ (root)`.
 4. Click **Save**.
 5. Within 1–2 minutes, your portal will be live at:
    ```
-   https://herrozgarcon.github.io/hcl-training/
+   https://herrozgarcon.github.io/frontend-training-hub/
    ```
 
 ---
@@ -127,4 +127,4 @@ To make all these projects accessible via a public web link anytime:
 
 - **Author**: Hrithik Kumar K
 - **GitHub**: [@herrozgarcon](https://github.com/herrozgarcon)
-- **Repository**: [herrozgarcon/hcl-training](https://github.com/herrozgarcon/hcl-training)
+- **Repository**: [herrozgarcon/frontend-training-hub](https://github.com/herrozgarcon/frontend-training-hub)
