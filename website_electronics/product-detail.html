@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Tronics</title>
+    <link rel="stylesheet" href="shop_styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+</head>
+<body>
+   <!-- Navbar matching existing structure & color palette -->
+   <nav class="navbar lg:navbar-expand bg-1 fg-2">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Tronics</a>
+        <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#navbarNavMenu" aria-controls="navbarNavMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" aria-hidden="true"></span>
+        </button>
+        <dialog class="drawer drawer-end" tabindex="-1" id="navbarNavMenu" aria-labelledby="navbarNavMenuLabel">
+        <div class="drawer-header">
+            <h5 class="drawer-title" id="navbarNavMenuLabel">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
+        </div>
+        <div class="drawer-body">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="features.html">Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="shop.html">Shop</a>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" type="button" data-bs-toggle="menu" aria-expanded="false">
+                Menu link
+                </button>
+                <div class="menu">
+                <a class="menu-item" href="#">Action</a>
+                <a class="menu-item" href="#">Another action</a>
+                <a class="menu-item" href="#">Something else here</a>
+                </div>
+            </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                <button class="btn-outline theme-success" type="submit">Search</button>
+            </form>
+        </div>
+        </dialog>
+    </div>
+    </nav>
+
+    <!-- Product Detail Container -->
+    <div class="container my-5">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb d-flex align-items-center gap-2">
+                <li class="breadcrumb-item"><button type="button" class="btn-subtle theme-secondary px-3 py-1 me-1" onclick="window.location.href='index.html'">Home</button></li>
+                <li class="breadcrumb-item"><button type="button" class="btn-subtle theme-secondary px-3 py-1 ms-1" onclick="window.location.href='shop.html'">Shop</button></li>
+                <li class="breadcrumb-item active" aria-current="page" id="breadcrumb-product-name">Product</li>
+            </ol>
+        </nav>
+
+        <div class="card p-4">
+            <div class="row g-4 align-items-center">
+                <div class="col-md-6 text-center">
+                    <img id="detail-product-img" src="" class="img-fluid rounded detail-img" alt="Product Image">
+                </div>
+                <div class="col-md-6">
+                    <span class="badge bg-secondary mb-2" id="detail-product-category">Category</span>
+                    <h2 class="card-title fw-bold" id="detail-product-name">Product Name</h2>
+                    <h4 class="text-primary fw-bold my-3" id="detail-product-price">$0.00</h4>
+                    <p class="card-text text-muted" id="detail-product-desc">Product description will appear here.</p>
+                    
+                    <h6 class="fw-bold mt-4">Key Features:</h6>
+                    <ul id="detail-features-list" class="text-muted">
+                        <!-- Populated dynamically -->
+                    </ul>
+
+                    <div class="d-flex gap-3 mt-4">
+                        <button type="button" class="btn btn-primary px-4 py-2" id="btn-detail-buy">Buy</button>
+                        <button type="button" class="btn btn-outline-primary px-4 py-2" id="btn-detail-cart">Add to Cart</button>
+                        <a href="shop.html" class="btn btn-secondary px-4 py-2">Back to Shop</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="products.js"></script>
+    <script>
+        function getQueryParam(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name);
+        }
+
+        function loadProductDetails() {
+            const productId = getQueryParam('id');
+            const product = products.find(p => p.id === productId) || products[0];
+
+            if (!product) return;
+
+            document.getElementById('breadcrumb-product-name').textContent = product.name;
+            document.getElementById('detail-product-img').src = product.image;
+            document.getElementById('detail-product-category').textContent = product.category;
+            document.getElementById('detail-product-name').textContent = product.name;
+            document.getElementById('detail-product-price').textContent = `$${product.price.toFixed(2)}`;
+            document.getElementById('detail-product-desc').textContent = product.detailedDescription || product.shortDescription;
+
+            const featuresList = document.getElementById('detail-features-list');
+            featuresList.innerHTML = '';
+            if (product.features) {
+                product.features.forEach(f => {
+                    const li = document.createElement('li');
+                    li.textContent = f;
+                    featuresList.appendChild(li);
+                });
+            }
+
+            document.getElementById('btn-detail-buy').onclick = () => {
+                alert(`Proceeding to checkout for ${product.name}`);
+            };
+
+            document.getElementById('btn-detail-cart').onclick = () => {
+                Cart.add(product, 1);
+                alert(`Added ${product.name} to cart`);
+            };
+        }
+
+        window.addEventListener('DOMContentLoaded', loadProductDetails);
+    </script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+</body>
+</html>

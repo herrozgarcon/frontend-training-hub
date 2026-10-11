@@ -1,7 +1,7 @@
 # 🚀 HCL Web Development & Training Projects Hub
 
 [![GitHub Profile](https://img.shields.io/badge/GitHub-herrozgarcon-blue?style=flat&logo=github)](https://github.com/herrozgarcon)
-[![Projects Count](https://img.shields.io/badge/Projects-6_Interactive_Apps-success?style=flat)](#-projects-catalog)
+[![Projects Count](https://img.shields.io/badge/Projects-7_Interactive_Apps-success?style=flat)](#-projects-catalog)
 [![Tech Stack](https://img.shields.io/badge/Tech-HTML5_|_CSS3_|_JavaScript_|_Bootstrap-orange?style=flat)](#%EF%B8%8F-technology-stack)
 [![Status](https://img.shields.io/badge/Status-Maintained-brightgreen?style=flat)](#)
 
@@ -21,6 +21,7 @@ This repository is organized to provide seamless future access, fast local devel
 | 4 | **[Netflix Landing Replica](./html/task1_netflix_replica/)** | UI Clone | HTML5, CSS3, Flexbox | [`html/task1_netflix_replica`](./html/task1_netflix_replica/) | Brand header, responsive hero banner, email lead capture CTA, multi-language selector |
 | 5 | **[Apple Website Clone](./html/webreplica/)** | UI Clone | HTML5, CSS3, Bootstrap 5, Icons | [`html/webreplica`](./html/webreplica/) | Minimalist navigation bar, full-width responsive product showcase (iPhone, Mac, iPad) |
 | 6 | **[JavaScript Mini-Projects](./html/js/)** | Mini-Apps | JavaScript, DOM API, CSS3 | [`html/js`](./html/js/) | Interactive BMI Calculator with health status feedback, results page, Array `.map()` demo |
+| 7 | **[Zoomcars Luxury Car Rental](./car_rental_website/)** | Web App | HTML5, CSS3, JS, Bootstrap 5 | [`car_rental_website`](./car_rental_website/) | Infinite reel carousel, quick booking dock, Log In & Sign Up auth with Google format, motto stats |
 
 ---
 

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>car rental </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+      <div class="container-fluid px-4">
+        <a class="navbar-brand fw-bold" href="#">Zoomcars</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center gap-2">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#">Become a host</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#motto-achievement-section">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="login.html" class="btn btn-outline-success rounded-pill px-4 text-decoration-none">
+                Login
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Motto and Achievements Section -->
+
+
+    <section class="booking-hub-section" id="book">
+        <div class="container">
+            <!-- Center of Attraction Header -->
+            <div class="booking-hub-header text-center">
+                <div class="booking-badge">
+                    <!-- <span class="pulse-dot"></span> -->
+                    <span>Reserve in Under 60 Seconds Instant Confirmation</span>
+                </div>
+                <h2 class="booking-hub-title">Where Does Your Next Journey Begin?</h2>
+                <p class="booking-hub-subtitle">
+                    Select your pickup location, schedule dates, and unlock our verified high-performance vehicles.
+                </p>
+            </div>
+
+            <!-- Neatly Designed Booking Nav Bar Dock (Spacious, Uncluttered & Tactile) -->
+            <div class="booking-nav-wrapper">
+                <div class="booking-nav-dock" id="bookingNavDock" role="search" aria-label="Quick Car Rental Reservation Bar">
+                    
+                    <!-- Segment 1: Pick-up Location (Triggers Centered Popup Modal) -->
+                    <div class="nav-segment location-segment" id="pickupSegment" role="button" tabindex="0" aria-haspopup="dialog" aria-label="Choose Pick-up Location">
+                        <div class="segment-icon-wrap text-emerald">
+                            <svg class="segment-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <div class="segment-content">
+                            <span class="segment-label">PICK-UP LOCATION</span>
+                            <input 
+                                type="text" 
+                                id="pickupInput" 
+                                class="segment-input clickable-location" 
+                                placeholder="Choose city or airport..." 
+                                readonly
+                                autocomplete="off"
+                            />
+                        </div>
+                        <span class="segment-chevron">▾</span>
+                    </div>
+
+                    <div class="nav-dock-divider" aria-hidden="true"></div>
+
+                    <!-- Segment 2: Drop-off Location (Triggers Centered Popup Modal) -->
+                    <div class="nav-segment location-segment" id="dropoffSegment" role="button" tabindex="0" aria-haspopup="dialog" aria-label="Choose Drop-off Location">
+                        <div class="segment-icon-wrap text-emerald">
+                            <svg class="segment-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                            </svg>
+                        </div>
+                        <div class="segment-content">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <span class="segment-label">DROP-OFF LOCATION</span>
+                            </div>
+                            <input 
+                                type="text" 
+                                id="dropoffInput" 
+                                class="segment-input clickable-location" 
+                                placeholder="Same as pick-up" 
+                                readonly
+                                autocomplete="off"
+                            />
+                        </div>
+                        <span class="segment-chevron">▾</span>
+                    </div>
+
+                    <div class="nav-dock-divider" aria-hidden="true"></div>
+
+                    <!-- Segment 3: Pick-up Date & Time (Hidden Under Calendar Icon) -->
+                    <div class="nav-segment date-segment" id="pickupDateSegment" role="button" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose Pick-up Date and Time">
+                        <div class="segment-icon-wrap text-emerald" id="pickupDateIconWrap" title="Click to choose pick-up date & time">
+                            <svg class="segment-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </div>
+                        <div class="segment-content">
+                            <span class="segment-label">PICK-UP DATE & TIME</span>
+                            <input 
+                                type="text" 
+                                id="pickupDateDisplay" 
+                                class="segment-input clickable-date" 
+                                placeholder="Choose date & time" 
+                                readonly 
+                                autocomplete="off"
+                            />
+                        </div>
+                        <span class="segment-chevron">▾</span>
+
+                        <!-- Date & Time Hidden Under Calendar Icon (Floating Popover) -->
+                        <div class="datetime-dock-popover" id="pickupDatePopover" role="dialog" aria-label="Pick-up Date & Time Selector" onclick="event.stopPropagation();">
+                            <div class="datetime-popover-header">
+                                <div class="popover-heading">
+                                    <svg class="popover-calendar-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    <span>Pick-up Schedule</span>
+                                </div>
+                                <button type="button" class="btn-popover-close" id="btnClosePickupPopover" aria-label="Close Date Picker">✕</button>
+                            </div>
+                            
+                            <div class="datetime-popover-body">
+                                <div class="popover-field-group">
+                                    <label for="pickupDate" class="popover-field-label">
+                                        <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                        PICK-UP DATE
+                                    </label>
+                                    <input type="date" id="pickupDate" class="popover-date-input" aria-label="Pick-up Date" />
+                                </div>
+
+                                <div class="popover-field-group">
+                                    <label for="pickupTime" class="popover-field-label">
+                                        <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                        PICK-UP TIME
+                                    </label>
+                                    <select id="pickupTime" class="popover-time-select" aria-label="Pick-up Time">
+                                        <option value="09:00">09:00 AM</option>
+                                        <option value="10:00" selected>10:00 AM</option>
+                                        <option value="11:00">11:00 AM</option>
+                                        <option value="12:00">12:00 PM</option>
+                                        <option value="14:00">02:00 PM</option>
+                                        <option value="16:00">04:00 PM</option>
+                                        <option value="18:00">06:00 PM</option>
+                                        <option value="20:00">08:00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="datetime-popover-footer">
+                                <span class="popover-status-badge">Available 24/7</span>
+                                <button type="button" class="btn-popover-apply" id="btnApplyPickupPopover">Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-dock-divider" aria-hidden="true"></div>
+
+                    <!-- Segment 4: Return Date & Time (Hidden Under Calendar Icon) -->
+                    <div class="nav-segment date-segment" id="returnDateSegment" role="button" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose Return Date and Time">
+                        <div class="segment-icon-wrap text-emerald" id="returnDateIconWrap" title="Click to choose return date & time">
+                            <svg class="segment-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </div>
+                        <div class="segment-content">
+                            <span class="segment-label">RETURN DATE & TIME</span>
+                            <input 
+                                type="text" 
+                                id="returnDateDisplay" 
+                                class="segment-input clickable-date" 
+                                placeholder="Choose date & time" 
+                                readonly 
+                                autocomplete="off"
+                            />
+                        </div>
+                        <span class="segment-chevron">▾</span>
+
+                        <!-- Date & Time Hidden Under Calendar Icon (Floating Popover) -->
+                        <div class="datetime-dock-popover" id="returnDatePopover" role="dialog" aria-label="Return Date & Time Selector" onclick="event.stopPropagation();">
+                            <div class="datetime-popover-header">
+                                <div class="popover-heading">
+                                    <svg class="popover-calendar-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    <span>Return Schedule</span>
+                                </div>
+                                <button type="button" class="btn-popover-close" id="btnCloseReturnPopover" aria-label="Close Date Picker">✕</button>
+                            </div>
+                            
+                            <div class="datetime-popover-body">
+                                <div class="popover-field-group">
+                                    <label for="returnDate" class="popover-field-label">
+                                        <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                        RETURN DATE
+                                    </label>
+                                    <input type="date" id="returnDate" class="popover-date-input" aria-label="Return Date" />
+                                </div>
+
+                                <div class="popover-field-group">
+                                    <label for="returnTime" class="popover-field-label">
+                                        <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                        RETURN TIME
+                                    </label>
+                                    <select id="returnTime" class="popover-time-select" aria-label="Return Time">
+                                        <option value="09:00">09:00 AM</option>
+                                        <option value="10:00" selected>10:00 AM</option>
+                                        <option value="11:00">11:00 AM</option>
+                                        <option value="12:00">12:00 PM</option>
+                                        <option value="14:00">02:00 PM</option>
+                                        <option value="16:00">04:00 PM</option>
+                                        <option value="18:00">06:00 PM</option>
+                                        <option value="20:00">08:00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="datetime-popover-footer">
+                                <span class="popover-status-badge">Flexible Drop-off</span>
+                                <button type="button" class="btn-popover-apply" id="btnApplyReturnPopover">Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-dock-divider" aria-hidden="true"></div>
+
+                    <!-- Segment 5: Vehicle Category (Entire Button Clickable with Floating Popover) -->
+                    <div class="nav-segment vehicle-segment" id="vehicleSegment" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-label="Choose Vehicle Type">
+                        <div class="segment-icon-wrap text-emerald" id="vehicleIconWrap" title="Click to choose vehicle type">
+                            <svg class="segment-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="20" height="13" rx="2"></rect>
+                                <path d="M16 3H8l-3 4h14l-3-4z"></path>
+                                <circle cx="7" cy="15" r="2"></circle>
+                                <circle cx="17" cy="15" r="2"></circle>
+                            </svg>
+                        </div>
+                        <div class="segment-content">
+                            <span class="segment-label">VEHICLE TYPE</span>
+                            <input 
+                                type="text" 
+                                id="vehicleCategoryDisplay" 
+                                class="segment-input clickable-vehicle" 
+                                value="All Vehicles (48)" 
+                                readonly 
+                                autocomplete="off"
+                            />
+                            <!-- Preserved Select for standard form & script compatibility -->
+                            <select id="vehicleCategory" class="d-none" aria-label="Vehicle Category">
+                                <option value="all" selected>All Vehicles (48)</option>
+                                <option value="luxury">Luxury & Exotic (12)</option>
+                                <option value="suv">Premium SUV (16)</option>
+                                <option value="electric">Electric / EV (8)</option>
+                                <option value="sports">Coupes & Sports (12)</option>
+                            </select>
+                        </div>
+                        <span class="segment-chevron">▾</span>
+
+                        <!-- Floating Vehicle Selection Popover (Custom Menu) -->
+                        <div class="datetime-dock-popover vehicle-dock-popover" id="vehicleCategoryPopover" role="listbox" aria-label="Vehicle Categories" onclick="event.stopPropagation();">
+                            <div class="datetime-popover-header">
+                                <div class="popover-heading">
+                                    <svg class="popover-calendar-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="2" y="7" width="20" height="13" rx="2"></rect>
+                                        <path d="M16 3H8l-3 4h14l-3-4z"></path>
+                                        <circle cx="7" cy="15" r="2"></circle>
+                                        <circle cx="17" cy="15" r="2"></circle>
+                                    </svg>
+                                    <span>Select Vehicle Fleet</span>
+                                </div>
+                                <button type="button" class="btn-popover-close" id="btnCloseVehiclePopover" aria-label="Close Vehicle Menu">✕</button>
+                            </div>
+                            
+                            <div class="vehicle-options-list">
+                                <div class="vehicle-option-item active" data-value="all" data-label="All Vehicles (48)" role="option" aria-selected="true" tabindex="0">
+                                    <div class="vehicle-option-icon">🚗</div>
+                                    <div class="vehicle-option-info">
+                                        <span class="vehicle-option-title">All Vehicles</span>
+                                        <span class="vehicle-option-subtitle">Full fleet of premium & economy rides</span>
+                                    </div>
+                                    <span class="vehicle-option-badge">48</span>
+                                </div>
+
+                                <div class="vehicle-option-item" data-value="luxury" data-label="Luxury & Exotic (12)" role="option" aria-selected="false" tabindex="0">
+                                    <div class="vehicle-option-icon">✨</div>
+                                    <div class="vehicle-option-info">
+                                        <span class="vehicle-option-title">Luxury & Exotic</span>
+                                        <span class="vehicle-option-subtitle">Rolls-Royce, Bentley, Ferrari</span>
+                                    </div>
+                                    <span class="vehicle-option-badge">12</span>
+                                </div>
+
+                                <div class="vehicle-option-item" data-value="suv" data-label="Premium SUV (16)" role="option" aria-selected="false" tabindex="0">
+                                    <div class="vehicle-option-icon">🚙</div>
+                                    <div class="vehicle-option-info">
+                                        <span class="vehicle-option-title">Premium SUV</span>
+                                        <span class="vehicle-option-subtitle">Range Rover, Cadillac Escalade</span>
+                                    </div>
+                                    <span class="vehicle-option-badge">16</span>
+                                </div>
+
+                                <div class="vehicle-option-item" data-value="electric" data-label="Electric / EV (8)" role="option" aria-selected="false" tabindex="0">
+                                    <div class="vehicle-option-icon">⚡</div>
+                                    <div class="vehicle-option-info">
+                                        <span class="vehicle-option-title">Electric / EV</span>
+                                        <span class="vehicle-option-subtitle">Porsche Taycan, Tesla Model S</span>
+                                    </div>
+                                    <span class="vehicle-option-badge">8</span>
+                                </div>
+
+                                <div class="vehicle-option-item" data-value="sports" data-label="Coupes & Sports (12)" role="option" aria-selected="false" tabindex="0">
+                                    <div class="vehicle-option-icon">🏎️</div>
+                                    <div class="vehicle-option-info">
+                                        <span class="vehicle-option-title">Coupes & Sports</span>
+                                        <span class="vehicle-option-subtitle">911 GT3, Aston Martin, Corvette</span>
+                                    </div>
+                                    <span class="vehicle-option-badge">12</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Segment 6: Action Button -->
+                    <div class="nav-action-segment">
+                        <button type="button" class="btn-dock-search" id="btnDockSearch" aria-label="Search Available Cars">
+                            <span class="btn-dock-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                            </span>
+                            <span class="btn-dock-text">Search Cars</span>
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Secondary Nav Bar Amenities Strip -->
+                <div class="booking-nav-amenities">
+                    <div class="amenity-item">
+                        <span class="amenity-check">✓</span>
+                        <span>Free Cancellation up to 24h</span>
+                    </div>
+                    <div class="amenity-item">
+                        <span class="amenity-check">✓</span>
+                        <span>Zero Hidden Fees or Deposit Lock</span>
+                    </div>
+                    <div class="amenity-item">
+                        <span class="amenity-check">✓</span>
+                        <span>Keyless Mobile App Door Unlock</span>
+                    </div>
+                    <div class="amenity-item">
+                        <span class="amenity-check">✓</span>
+                        <span>24/7 Comprehensive On-Road Cover</span>
+                    </div>
+                </div>
+
+                <!-- Interactive Live Search Confirmation Feedback Modal / Toast -->
+                <div class="booking-feedback-toast d-none" id="bookingFeedbackToast">
+                    <div class="toast-content">
+                        <div class="toast-icon">⚡</div>
+                        <div class="toast-text">
+                            <h4 class="toast-title" id="toastTitle">Searching Vehicles...</h4>
+                            <p class="toast-desc" id="toastDesc">Matching high-performance rentals with your schedule.</p>
+                        </div>
+                        <button type="button" class="btn-close-toast" id="btnCloseToast" aria-label="Close notification">×</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================
+         Centered Location Modal Popup Window with Blurred Backdrop
+         Provides detailed suggestions and immersive selection experience
+         ======================================================== -->
+    <div class="location-modal-overlay" id="locationModalOverlay" aria-hidden="true">
+        <div class="location-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalLocationTitle">
+            
+            <!-- Modal Header -->
+            <div class="location-modal-header">
+                <div class="modal-header-info">
+                    <div class="modal-header-icon-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="location-modal-title" id="modalLocationTitle">Select Pick-up Location</h3>
+                        <p class="location-modal-subtitle">Browse verified airport hubs, city centers & VIP delivery points</p>
+                    </div>
+                </div>
+                <button type="button" class="btn-modal-close" id="btnCloseLocationModal" aria-label="Close location picker">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Modal Search Input Bar -->
+            <div class="modal-search-section">
+                <div class="modal-search-box">
+                    <span class="modal-search-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <input 
+                        type="text" 
+                        id="modalLocationSearchInput" 
+                        class="modal-search-input" 
+                        placeholder="Search by city, airport code (e.g. LAX, SFO, JFK), or landmark..."
+                        autocomplete="off"
+                        spellcheck="false"
+                    />
+                    <button type="button" class="btn-clear-search d-none" id="btnClearModalSearch" aria-label="Clear search">✕</button>
+                </div>
+            </div>
+
+            <!-- Category Filter Chips -->
+            <div class="modal-filter-toolbar">
+                <button type="button" class="modal-filter-chip active" data-filter="all">All Locations (14)</button>
+                <button type="button" class="modal-filter-chip" data-filter="airport">✈️ Airports (7)</button>
+                <button type="button" class="modal-filter-chip" data-filter="city">🏙️ City Centers (7)</button>
+                <button type="button" class="modal-filter-chip" data-filter="instant">⚡ 24/7 Keyless (9)</button>
+            </div>
+
+            <!-- Detailed Suggestions Scrollable Container -->
+            <div class="modal-suggestions-scroll" id="modalSuggestionsContainer" role="listbox">
+                <!-- Detailed suggestions cards generated dynamically by script.js -->
+            </div>
+
+            <!-- Modal Footer with Trust & Tips -->
+            <div class="location-modal-footer">
+                <div class="modal-footer-tip">
+                    <span class="tip-icon">💡</span>
+                    <span><strong>Pro Tip:</strong> Airport rentals include dedicated valet curbside delivery and zero counter wait time.</span>
+                </div>
+                <div class="modal-footer-counter" id="modalLocationCount">
+                    Showing 14 locations
+                </div>
+            </div>
+
+        </div>
+    </div>
+   
+    <!-- Featured Fleet Carousel Reel Section -->
+    <section class="fleet-carousel-section">
+        <div class="container py-5">
+            <div class="showcase-header text-center mb-4">
+                <h2 class="showcase-title">Trending Luxury & Daily Rentals</h2>
+                <p class="showcase-subtitle">Smooth, continuous reel of verified high-performance vehicles</p>
+            </div>
+
+            <div id="carouselExampleDark" class="carousel carousel-overlay slide">
+                <div class="carousel-inner rounded-4 shadow-lg">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+                        <div class="carousel-img-container">
+                            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=80" class="d-block w-100 carousel-car-img" alt="Porsche 911 Carrera">
+                            <div class="carousel-gradient-mask"></div>
+                        </div>
+                        <div class="carousel-caption">
+                            <div class="glass-caption-card">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <span class="car-rating">★ 4.95 (142 trips)</span>
+                                </div>
+                                <h3 class="car-name">Porsche 911 Carrera S</h3>
+                                <p class="car-specs">Twin-Turbo Flat-6 • 443 HP • 0-60 in 3.3s • 2-Seater</p>
+                                <div class="d-flex align-items-center justify-content-between mt-3">
+                                    <div class="car-pricing">
+                                        <span class="price-amount">$199</span>
+                                        <span class="price-period">/ day</span>
+                                    </div>
+                                    <a href="#book" class="btn btn-rent-now">Reserve Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="carousel-item">
+                        <div class="carousel-img-container">
+                            <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1600&q=80" class="d-block w-100 carousel-car-img" alt="Range Rover Autobiography">
+                            <div class="carousel-gradient-mask"></div>
+                        </div>
+                        <div class="carousel-caption">
+                            <div class="glass-caption-card">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <span class="car-rating">★ 4.98 (210 trips)</span>
+                                </div>
+                                <h3 class="car-name">Range Rover Autobiography</h3>
+                                <p class="car-specs">V8 Supercharged • AWD • Executive Seating • 5-Seater</p>
+                                <div class="d-flex align-items-center justify-content-between mt-3">
+                                    <div class="car-pricing">
+                                        <span class="price-amount">$169</span>
+                                        <span class="price-period">/ day</span>
+                                    </div>
+                                    <a href="#book" class="btn btn-rent-now">Reserve Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="carousel-item">
+                        <div class="carousel-img-container">
+                            <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1600&q=80" class="d-block w-100 carousel-car-img" alt="BMW M8 Competition">
+                            <div class="carousel-gradient-mask"></div>
+                        </div>
+                        <div class="carousel-caption">
+                            <div class="glass-caption-card">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <span class="car-rating">★ 4.92 (98 trips)</span>
+                                </div>
+                                <h3 class="car-name">BMW M8 Competition Coupe</h3>
+                                <p class="car-specs">4.4L TwinPower V8 • 617 HP • M xDrive • 4-Seater</p>
+                                <div class="d-flex align-items-center justify-content-between mt-3">
+                                    <div class="car-pricing">
+                                        <span class="price-amount">$159</span>
+                                        <span class="price-period">/ day</span>
+                                    </div>
+                                    <a href="#book" class="btn btn-rent-now">Reserve Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="carousel-item">
+                        <div class="carousel-img-container">
+                            <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1600&q=80" class="d-block w-100 carousel-car-img" alt="Audi RS e-tron GT">
+                            <div class="carousel-gradient-mask"></div>
+                        </div>
+                        <div class="carousel-caption">
+                            <div class="glass-caption-card">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <span class="car-rating">★ 4.97 (185 trips)</span>
+                                </div>
+                                <h3 class="car-name">Audi RS e-tron GT</h3>
+                                <p class="car-specs">Dual Electric Motors • 637 HP • 800V Ultra-Fast Charging</p>
+                                <div class="d-flex align-items-center justify-content-between mt-3">
+                                    <div class="car-pricing">
+                                        <span class="price-amount">$179</span>
+                                        <span class="price-period">/ day</span>
+                                    </div>
+                                    <a href="#book" class="btn btn-rent-now">Reserve Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reel Indicator Controls -->
+                <div class="carousel-overlay-controls">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">
+                            <span class="indicator-progress"></span>
+                        </button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2">
+                            <span class="indicator-progress"></span>
+                        </button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3">
+                            <span class="indicator-progress"></span>
+                        </button>
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4">
+                            <span class="indicator-progress"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Previous / Next Slide Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev" aria-label="Previous Slide">
+                    <span class="carousel-control-nav-btn" aria-hidden="true">&#10094;</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next" aria-label="Next Slide">
+                    <span class="carousel-control-nav-btn" aria-hidden="true">&#10095;</span>
+                </button>
+
+            </div>
+        </div>
+    </section>
+ <section class="motto-achievement-section" id="motto-achievement-section">
+        <div class="container text-center">
+            <!-- Company Motto -->
+            <div class="motto-box">
+                <h1 class="company-motto">"Drive Your Freedom, Wherever Life Takes You"</h1>
+                <p class="motto-subtitle">
+                    At Zoomcars, we empower journeys with effortless rentals, exceptional comfort, and trust on every mile you travel.
+                </p>
+            </div>
+
+            <!-- Company Achievements -->
+            <div class="achievements-box">
+                <div class="achievement-grid">
+                    <div class="achievement-card">
+                        
+                        <h2 class="achievement-number">500K+</h2>
+                        <p class="achievement-label">Trips Completed</p>
+                    </div>
+                    <div class="achievement-card">
+                       
+                        <h2 class="achievement-number">4.9 / 5</h2>
+                        <p class="achievement-label">Customer Rating</p>
+                    </div>
+                    <div class="achievement-card">
+                       
+                        <h2 class="achievement-number">150+</h2>
+                        <p class="achievement-label">Cities Connected</p>
+                    </div>
+                    <div class="achievement-card">
+                        
+                        <h2 class="achievement-number">25,000+</h2>
+                        <p class="achievement-label">Verified Vehicles</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tronics</title>
+    <link rel="stylesheet" href="shop_styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+</head>
+<body>
+   <nav class="navbar lg:navbar-expand bg-1 fg-2">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Tronics</a>
+        <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#navbarNavMenu" aria-controls="navbarNavMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" aria-hidden="true"></span>
+        </button>
+        <dialog class="drawer drawer-end" tabindex="-1" id="navbarNavMenu" aria-labelledby="navbarNavMenuLabel">
+        <div class="drawer-header">
+            <h5 class="drawer-title" id="navbarNavMenuLabel">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
+        </div>
+        <div class="drawer-body">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="features.html">Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="shop.html">Shop</a>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" type="button" data-bs-toggle="menu" aria-expanded="false">
+                Menu link
+                </button>
+                <div class="menu">
+                <a class="menu-item" href="#">Action</a>
+                <a class="menu-item" href="#">Another action</a>
+                <a class="menu-item" href="#">Something else here</a>
+                </div>
+            </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                <button class="btn-outline theme-success" type="submit">Search</button>
+            </form>
+        </div>
+        </dialog>
+    </div>
+    </nav>
+    
+    <!-- Container below nav bar containing product cards in a Bootstrap Grid Matrix -->
+    <div class="container my-5">
+        <!-- Breadcrumb Navigation -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb d-flex align-items-center gap-2">
+                <li class="breadcrumb-item"><button type="button" class="btn-subtle theme-secondary px-3 py-1 me-1" onclick="window.location.href='index.html'">Home</button></li>
+                <li class="breadcrumb-item"><button type="button" class="btn-subtle theme-secondary px-3 py-1 ms-1" onclick="window.location.href='shop.html'">Shop</button></li>
+            </ol>
+        </nav>
+
+        <!-- Search Results Banner (shown when filtering) -->
+        <div id="search-results-banner" class="search-results-banner mb-4" style="display: none;"></div>
+
+        <div class="row row-cols-1 sm:row-cols-2 md:row-cols-3 lg:row-cols-4 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="products-container">
+            <!-- Product Cards arranged in a matrix -->
+            <div class="col">
+                <div class="card h-100 product-card" onclick="openProductDetail('sony-wh1000xm5')">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80" class="card-img-top" alt="Sony WH-1000XM5 Wireless Headphones">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Sony WH-1000XM5 Wireless Headphones</h5>
+                        <p class="card-text text-muted">Flagship wireless noise-cancelling headphones with 2 processors, 8 microphones, and ultra-comfortable lightweight design.</p>
+                        <h5 class="fw-bold mt-auto mb-3">$349.99</h5>
+                        <div class="d-flex gap-2 w-100">
+                            <button type="button" class="btn btn-solid theme-primary btn-primary flex-fill" onclick="event.stopPropagation(); buyProduct('sony-wh1000xm5')">Buy</button>
+                            <button type="button" class="btn btn-outline theme-primary btn-outline-primary flex-fill" onclick="event.stopPropagation(); addToCart('sony-wh1000xm5')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 product-card" onclick="openProductDetail('macbook-pro-16-m3')">
+                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&auto=format&fit=crop&q=80" class="card-img-top" alt="Apple MacBook Pro 16&quot; M3 Max">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Apple MacBook Pro 16" M3 Max</h5>
+                        <p class="card-text text-muted">Supercharged by M3 Max with up to 16-core CPU, 40-core GPU, stunning Liquid Retina XDR display, and up to 22 hours battery.</p>
+                        <h5 class="fw-bold mt-auto mb-3">$2499.00</h5>
+                        <div class="d-flex gap-2 w-100">
+                            <button type="button" class="btn btn-solid theme-primary btn-primary flex-fill" onclick="event.stopPropagation(); buyProduct('macbook-pro-16-m3')">Buy</button>
+                            <button type="button" class="btn btn-outline theme-primary btn-outline-primary flex-fill" onclick="event.stopPropagation(); addToCart('macbook-pro-16-m3')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 product-card" onclick="openProductDetail('samsung-galaxy-s24-ultra')">
+                    <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80" class="card-img-top" alt="Samsung Galaxy S24 Ultra 5G">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Samsung Galaxy S24 Ultra 5G</h5>
+                        <p class="card-text text-muted">Titanium exterior, flat 6.8" Dynamic AMOLED 2X, embedded S Pen, and revolutionary 200MP camera system powered by Galaxy AI.</p>
+                        <h5 class="fw-bold mt-auto mb-3">$1199.99</h5>
+                        <div class="d-flex gap-2 w-100">
+                            <button type="button" class="btn btn-solid theme-primary btn-primary flex-fill" onclick="event.stopPropagation(); buyProduct('samsung-galaxy-s24-ultra')">Buy</button>
+                            <button type="button" class="btn btn-outline theme-primary btn-outline-primary flex-fill" onclick="event.stopPropagation(); addToCart('samsung-galaxy-s24-ultra')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 product-card" onclick="openProductDetail('apple-watch-ultra-2')">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80" class="card-img-top" alt="Apple Watch Ultra 2 GPS + Cellular">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Apple Watch Ultra 2 GPS + Cellular</h5>
+                        <p class="card-text text-muted">Corrosion-resistant 49mm titanium case, 3000 nits always-on Retina display, customizable Action button, and 36-hour battery.</p>
+                        <h5 class="fw-bold mt-auto mb-3">$799.00</h5>
+                        <div class="d-flex gap-2 w-100">
+                            <button type="button" class="btn btn-solid theme-primary btn-primary flex-fill" onclick="event.stopPropagation(); buyProduct('apple-watch-ultra-2')">Buy</button>
+                            <button type="button" class="btn btn-outline theme-primary btn-outline-primary flex-fill" onclick="event.stopPropagation(); addToCart('apple-watch-ultra-2')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 product-card" onclick="openProductDetail('sony-playstation-5-pro')">
+                    <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800&auto=format&fit=crop&q=80" class="card-img-top" alt="PlayStation 5 Pro Digital Edition">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">PlayStation 5 Pro Digital Edition</h5>
+                        <p class="card-text text-muted">Upgraded GPU with PlayStation Spectral Super Resolution (PSSR), advanced ray tracing, and high framerates at 4K resolution.</p>
+                        <h5 class="fw-bold mt-auto mb-3">$699.99</h5>
+                        <div class="d-flex gap-2 w-100">
+                            <button type="button" class="btn btn-solid theme-primary btn-primary flex-fill" onclick="event.stopPropagation(); buyProduct('sony-playstation-5-pro')">Buy</button>
+                            <button type="button" class="btn btn-outline theme-primary btn-outline-primary flex-fill" onclick="event.stopPropagation(); addToCart('sony-playstation-5-pro')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 product-card" onclick="openProductDetail('fujifilm-xt5')">
+                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&auto=format&fit=crop&q=80" class="card-img-top" alt="Fujifilm X-T5 Mirrorless Camera Body">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Fujifilm X-T5 Mirrorless Camera Body</h5>
+                        <p class="card-text text-muted">40.2MP X-Trans CMOS 5 HR sensor, 5-axis 7.0-stop in-body stabilization, 6.2K 30p video, and iconic analog dials.</p>
+                        <h5 class="fw-bold mt-auto mb-3">$1699.00</h5>
+                        <div class="d-flex gap-2 w-100">
+                            <button type="button" class="btn btn-solid theme-primary btn-primary flex-fill" onclick="event.stopPropagation(); buyProduct('fujifilm-xt5')">Buy</button>
+                            <button type="button" class="btn btn-outline theme-primary btn-outline-primary flex-fill" onclick="event.stopPropagation(); addToCart('fujifilm-xt5')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 product-card" onclick="openProductDetail('sonos-era-300')">
+                    <img src="https://images.unsplash.com/photo-1545454675-3531b543be5d?w=800&auto=format&fit=crop&q=80" class="card-img-top" alt="Sonos Era 300 Smart Speaker">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Sonos Era 300 Smart Speaker</h5>
+                        <p class="card-text text-muted">Revolutionary acoustic design with 6 drivers calibrated for Dolby Atmos Spatial Audio, WiFi 6, and Bluetooth streaming.</p>
+                        <h5 class="fw-bold mt-auto mb-3">$449.00</h5>
+                        <div class="d-flex gap-2 w-100">
+                            <button type="button" class="btn btn-solid theme-primary btn-primary flex-fill" onclick="event.stopPropagation(); buyProduct('sonos-era-300')">Buy</button>
+                            <button type="button" class="btn btn-outline theme-primary btn-outline-primary flex-fill" onclick="event.stopPropagation(); addToCart('sonos-era-300')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 product-card" onclick="openProductDetail('dji-mini-4-pro')">
+                    <img src="https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=800&auto=format&fit=crop&q=80" class="card-img-top" alt="DJI Mini 4 Pro Fly More Combo Plus">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">DJI Mini 4 Pro Fly More Combo Plus</h5>
+                        <p class="card-text text-muted">Ultra-lightweight under 249g foldable drone with omnidirectional obstacle sensing, 4K/60fps HDR, and 20km video transmission.</p>
+                        <h5 class="fw-bold mt-auto mb-3">$1099.00</h5>
+                        <div class="d-flex gap-2 w-100">
+                            <button type="button" class="btn btn-solid theme-primary btn-primary flex-fill" onclick="event.stopPropagation(); buyProduct('dji-mini-4-pro')">Buy</button>
+                            <button type="button" class="btn btn-outline theme-primary btn-outline-primary flex-fill" onclick="event.stopPropagation(); addToCart('dji-mini-4-pro')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Data & Interactions -->
+    <script src="products.js"></script>
+    <script>
+        function renderProducts(itemsToRender, searchQuery = '') {
+            const container = document.getElementById('products-container');
+            const searchBanner = document.getElementById('search-results-banner');
+            if (!container) return;
+
+            if (searchQuery && searchBanner) {
+                searchBanner.style.display = 'flex';
+                searchBanner.className = 'search-results-banner d-flex justify-content-between align-items-center flex-wrap gap-2';
+                searchBanner.innerHTML = `
+                    <div>
+                        <span class="text-muted">Showing results for:</span>
+                        <strong class="ms-1 fs-5 text-dark">"${escapeHtml(searchQuery)}"</strong>
+                        <span class="badge bg-primary text-white ms-2 px-2 py-1">${itemsToRender.length} found</span>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="resetSearch()">
+                        Clear Search
+                    </button>
+                `;
+            } else if (searchBanner) {
+                searchBanner.style.display = 'none';
+                searchBanner.innerHTML = '';
+            }
+
+            container.innerHTML = '';
+
+            if (!itemsToRender || itemsToRender.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 w-100 text-center py-5">
+                        <div class="p-5 bg-light rounded-4 border">
+                            <h4 class="fw-bold mb-2">No products found</h4>
+                            <p class="text-muted mb-4">We couldn't find any products matching "${escapeHtml(searchQuery)}". Try searching for different keywords or categories.</p>
+                            <button type="button" class="btn btn-solid theme-primary btn-primary" onclick="resetSearch()">
+                                View All Products
+                            </button>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            itemsToRender.forEach(product => {
+                const col = document.createElement('div');
+                col.className = 'col';
+
+                col.innerHTML = `
+                    <div class="card h-100 product-card shadow-sm" onclick="openProductDetail('${product.id}')">
+                        <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">${product.name}</h5>
+                            <p class="card-text text-muted">${product.shortDescription}</p>
+                            <h5 class="fw-bold mt-auto mb-3">$${product.price.toFixed(2)}</h5>
+                            <div class="d-flex gap-2 w-100">
+                                <button type="button" class="btn btn-solid theme-primary btn-primary flex-fill" onclick="event.stopPropagation(); buyProduct('${product.id}')">Buy</button>
+                                <button type="button" class="btn btn-outline theme-primary btn-outline-primary flex-fill" onclick="event.stopPropagation(); addToCart('${product.id}')">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(col);
+            });
+        }
+
+        window.filterShopProducts = function(searchQuery) {
+            const q = (searchQuery || '').trim();
+            const lowerQ = q.toLowerCase();
+
+            // Sync input values across the page
+            document.querySelectorAll('input[type="search"]').forEach(inp => {
+                inp.value = q;
+            });
+
+            // Update URL without full page reload
+            const url = new URL(window.location);
+            if (q) {
+                url.searchParams.set('search', q);
+            } else {
+                url.searchParams.delete('search');
+            }
+            window.history.pushState({}, '', url);
+
+            if (!q) {
+                renderProducts(products, '');
+                return;
+            }
+
+            const filtered = products.filter(p => {
+                const name = p.name.toLowerCase();
+                const cat = p.category.toLowerCase();
+                const tag = (p.tagline || '').toLowerCase();
+                const desc = (p.shortDescription || '').toLowerCase();
+                const brand = (p.specs && p.specs.Brand ? p.specs.Brand : '').toLowerCase();
+                return name.includes(lowerQ) || cat.includes(lowerQ) || tag.includes(lowerQ) || desc.includes(lowerQ) || brand.includes(lowerQ);
+            });
+
+            renderProducts(filtered, q);
+        };
+
+        window.resetSearch = function() {
+            window.filterShopProducts('');
+        };
+
+        function openProductDetail(id) {
+            window.location.href = `product-detail.html?id=${encodeURIComponent(id)}`;
+        }
+
+        function buyProduct(id) {
+            const product = products.find(p => p.id === id);
+            alert(`Proceeding to buy: ${product ? product.name : id}`);
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            if (product) {
+                Cart.add(product, 1);
+            }
+            alert(`Added to cart: ${product ? product.name : id}`);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get('search');
+            if (query) {
+                window.filterShopProducts(query);
+            } else {
+                renderProducts(products, '');
+            }
+        });
+    </script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+</body>
+</html>
