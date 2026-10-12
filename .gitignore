@@ -20,3 +20,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 *.log
+
+# .NET build outputs
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
