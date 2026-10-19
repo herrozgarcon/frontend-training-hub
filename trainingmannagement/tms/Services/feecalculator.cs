@@ -1,10 +1,14 @@
 namespace tms.Services;
-using Models;
+using tms.Models;
+
+
+
 public class feecalculator
 {
     public static decimal totalfees;
-    public static void calculatefees(decimal totalFees=0)
+    public static decimal? calculatefees(decimal totalFees=0)
     {
+        
         Console.WriteLine("enter the coursecode to calculate the fees");
         string courseCode = Console.ReadLine();
         while (string.IsNullOrWhiteSpace(courseCode))
@@ -26,18 +30,16 @@ public class feecalculator
 
         {
 
-            Console.WriteLine("Course not found. Enrollment cancelled.");
+            Console.WriteLine("Course not found");
 
-            return;
+            return null;
 
         }
         
         decimal basefees = selectedCourse.Fees;
         totalFees = basefees;
        
-        Enrollment enrollment = enrolementservices.enrollments
-
-            .FirstOrDefault(e => e.LearnerId == learnerid);
+        Enrollment? enrollment = enrolementservices.enrollments.FirstOrDefault(e => e.LearnerId == learnerid);
 
         if (enrollment == null)
 
@@ -53,15 +55,11 @@ public class feecalculator
 
         DateTime courseStartDate = new DateTime(2026, 11, 21);
 
-        if ((courseStartDate.Date - enrollmentDate.Date).TotalDays >= 14)
+        return (courseStartDate.Date - enrollmentDate.Date).TotalDays >= 14
+            ? enrollment.BaseFee * 0.10m
+            : 0m;
 
-        {
-
-            totalFees= enrollment.BaseFee * 0.10m;
-
-        }
         
-
     }
     
 }

@@ -1,3 +1,4 @@
+using tms.exception;
 using tms.Models;
 
 namespace tms.Services;
@@ -14,6 +15,14 @@ public class enrolementservices
         {
             Console.WriteLine("enter learnerID to be enroled ");
             learnerid=Console.ReadLine();
+        }
+
+        bool valid = learnerservices.learners.ContainsKey(learnerid);
+
+        if (!valid)
+        {
+            Console.WriteLine("Invalid learner ID. or learner ID not found.");
+            return;
         }
         
         // Automatically retrieve the course fee
@@ -50,53 +59,112 @@ public class enrolementservices
         decimal basefees = selectedCourse.Fees;
         
         
-        decimal discount=0;
-        decimal finalfee=basefees-discount;
+        decimal discount=10;
+        decimal finalfee=basefees - (basefees*0.10m);
         Enrollment enrollment = new Enrollment(learnerid,courseid,basefees,discount,finalfee);
         enrollments.Add(enrollment);
+        
+        string path ="/Users/hrithik/hcl training/trainingmannagement/tms/files/enrolements.txt";
+        List<string> lines = new List<string>();
+        foreach (Enrollment enfile in enrollments)
+        {
+            lines.Add("--------------------------------------\n" +
+                      $"Enrollment ID  : {enfile.EnrollmentId}\n" +
+                      $"Learner ID     : {enfile.LearnerId}\n" +
+                      $"Course Code    : {enfile.CourseCode}\n" +
+                      $"Base Fee       : ₹{enfile.BaseFee:F2}\n" +
+                      $"Final Fee      : ₹{enfile.FinalFee:F2}\n" +
+                      $"Enrollment Date: {enfile.EnrollmentDate:yyyy-MM-dd}\n" +
+                      $"Status         : {enfile.Status}\n" +
+                      $"Payment Status : {enfile.PaymentStatus}\n" +
+                      $"-----------------------------------------");
+        }
+        File.WriteAllLines(path, lines);
         
     }
 
     public static void displayEnrollments()
     {
+        
+        string path ="/Users/hrithik/hcl training/trainingmannagement/tms/files/enrolements.txt";
+        List<string> lines = new List<string>();
+        if (enrollments.Count == 0)
+        {
+            Console.WriteLine("No enrollments found.");
+            return;
+        }
+
+        foreach (Enrollment enfile in enrollments)
+        {
+            lines.Add("--------------------------------------\n" +
+                      $"Enrollment ID  : {enfile.EnrollmentId}\n" +
+                      $"Learner ID     : {enfile.LearnerId}\n" +
+                      $"Course Code    : {enfile.CourseCode}\n" +
+                      $"Base Fee       : ₹{enfile.BaseFee:F2}\n" +
+                      $"Final Fee      : ₹{enfile.FinalFee:F2}\n" +
+                      $"Enrollment Date: {enfile.EnrollmentDate:yyyy-MM-dd}\n" +
+                      $"Status         : {enfile.Status}\n" +
+                      $"Payment Status : {enfile.PaymentStatus}\n" +
+                      $"-----------------------------------------");
+        }
+
         foreach (Enrollment en in enrollments)
         {
             Console.WriteLine("-------------------------------------");
-            Console.WriteLine($"enrolmentId:{en.EnrollmentId}\n" +
-                              $"learner Id:{en.LearnerId}\n" +
-                              $"course: {en.CourseCode}");
+            Console.WriteLine($"Enrollment ID  : {en.EnrollmentId}\n" +
+                              $"Learner ID     : {en.LearnerId}\n" +
+                              $"Course Code    : {en.CourseCode}\n" +
+                              $"Base Fee       : ₹{en.BaseFee:F2}\n" +
+                              $"Final Fee      : ₹{en.FinalFee:F2}\n" +
+                              $"Enrollment Date: {en.EnrollmentDate:yyyy-MM-dd}\n" +
+                              $"Status         : {en.Status}\n" +
+                              $"Payment Status : {en.PaymentStatus}");
             Console.WriteLine("-------------------------------------");
         }
+        
+        File.WriteAllLines(path, lines);
     }
 
     public static void cancelEnrollment()
     {
-        Console.WriteLine("enter enrolement to id cancel enrollment");
+        string path ="/Users/hrithik/hcl training/trainingmannagement/tms/files/enrolements.txt";
+        List<string> lines = new List<string>();
+        Console.WriteLine("enter enrolement id  to cancel enrollment");
         
         if (!int.TryParse(Console.ReadLine(), out int enrollmentId))
         {
             Console.WriteLine("Invalid Enrollment ID.");
             return;
         }
+        var en = enrollments.FirstOrDefault(en =>
+            en.EnrollmentId == enrollmentId &&
+            string.Equals(en.Status, "Active", StringComparison.OrdinalIgnoreCase));
 
-        foreach (Enrollment en in enrollments)
+        if (en != null)
         {
-            if (en.EnrollmentId == enrollmentId && en.Status == "active")
+            en.cancel();
+            Console.WriteLine("Enrollment cancelled successfully!");
+            Console.WriteLine($"Enrollment ID: {en.EnrollmentId}");
+            Console.WriteLine($"Status: {en.Status}");
+            foreach (Enrollment enfile in enrollments)
             {
-                en.cancel();
-                Console.WriteLine("Enrollment cancelled successfully!");
-                Console.WriteLine($"Enrollment ID: {en.EnrollmentId}");
-                Console.WriteLine($"Status: {en.Status}");
-                return;
+                lines.Add("--------------------------------------\n" +
+                          $"Enrollment ID  : {enfile.EnrollmentId}\n" +
+                          $"Learner ID     : {enfile.LearnerId}\n" +
+                          $"Course Code    : {enfile.CourseCode}\n" +
+                          $"Base Fee       : ₹{enfile.BaseFee:F2}\n" +
+                          $"Final Fee      : ₹{enfile.FinalFee:F2}\n" +
+                          $"Enrollment Date: {enfile.EnrollmentDate:yyyy-MM-dd}\n" +
+                          $"Status         : {enfile.Status}\n" +
+                          $"Payment Status : {enfile.PaymentStatus}\n" +
+                          $"-----------------------------------------");
             }
+            File.WriteAllLines(path, lines);
+            return;
         }
+
+
         Console.WriteLine("Active enrollment not found.");
-
-
-        
-
-
+        throw new doesnotcontain("enrolement not in enrolement list or erolement id may be invalid");
     }
-    
-    
 }

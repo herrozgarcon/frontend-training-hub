@@ -4,12 +4,10 @@ namespace tms.Services;
 
 public class learnerservices
 {
-    static Dictionary<string,learners> learners=new Dictionary<string,learners>();
+    public static Dictionary<string,learners> learners=new Dictionary<string,learners>();
 
-    public void createlearner()
+    public static  void createlearner()
     {
-        
-        
         Console.WriteLine("enter learner id");
         string learnerId = Console.ReadLine();
         while (string.IsNullOrWhiteSpace(learnerId))
@@ -17,7 +15,7 @@ public class learnerservices
             Console.WriteLine("invalid!enter correct learner id");
             learnerId = Console.ReadLine();
         }
-
+        
         if (learners.ContainsKey(learnerId))
         {
             Console.WriteLine("learner already exists");
@@ -45,15 +43,16 @@ public class learnerservices
         learners.Add(learnerId,learner1);
     }
 
-    public void displaylearners()
+    public static void displaylearners()
     {
-        foreach (var learner in learners)
-        {
-            Console.WriteLine($"{learner.Key}: {learner.Value}");
-        }
+        learners.ToList().ForEach(learner =>
+
+            Console.WriteLine($"{learner.Key}: {learner.Value}")
+
+        );
     }
 
-    public void searchlearners()
+    public static  void searchlearners()
     {
         Console.WriteLine("enter learner id");
         string learnerId = Console.ReadLine();
@@ -69,7 +68,8 @@ public class learnerservices
             Console.WriteLine(learners[learnerId]);
             return;
         }
-        Console.WriteLine("learner does not exist");
+        throw new Exception("learner not found");
+        //Console.WriteLine("learner does not exist");
     }
     
     

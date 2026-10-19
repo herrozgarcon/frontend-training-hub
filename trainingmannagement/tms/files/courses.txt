@@ -1,0 +1,24 @@
+Course Code: cs123
+Course Name: python
+Fees: 123
+Duration: 1
+Total Seats: 50
+Enrolled Count: 10
+available seats:40
+-----------------------------------------------------------
+Course Code: cs154
+Course Name: java
+Fees: 123
+Duration: 1
+Total Seats: 50
+Enrolled Count: 20
+available seats:30
+-----------------------------------------------------------
+Course Code: cs187
+Course Name: dsa
+Fees: 200
+Duration: 2
+Total Seats: 50
+Enrolled Count: 5
+available seats:45
+-----------------------------------------------------------

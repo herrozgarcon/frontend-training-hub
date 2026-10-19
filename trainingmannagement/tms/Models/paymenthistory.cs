@@ -1,6 +1,6 @@
 namespace tms.Models;
 
-public class paymenthistory
+// Backward-compatible reference to Payment class
+public class paymenthistory : Payment
 {
-    
 }

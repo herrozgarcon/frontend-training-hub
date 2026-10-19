@@ -1,0 +1,10 @@
+--------------------------------------
+Enrollment ID  : 1
+Learner ID     : 1
+Course Code    : cs123
+Base Fee       : ₹123.00
+Final Fee      : ₹110.70
+Enrollment Date: 2026-10-19
+Status         : Active
+Payment Status : Pending
+-----------------------------------------

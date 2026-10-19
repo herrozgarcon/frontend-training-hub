@@ -1,0 +1,5 @@
+Enrollment ID      : 1
+Learner ID         : 1
+Course Code        : cs123
+Total Amount (₹)   : 310.70 (includes ₹200 online surcharge)
+Current Pay Status : Successful

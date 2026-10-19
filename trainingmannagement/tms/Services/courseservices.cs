@@ -1,80 +1,72 @@
+using System.Reflection.PortableExecutable;
 using tms.Models;
 
 namespace tms.Services;
 
 public class courseservices:courses
 {
-    static List<courses> CoursesList = new List<courses>();
-
-    public static void AddCourses()
+    public static List<courses> CoursesList = new List<courses>()
     {
-        Console.WriteLine("Enter course code:");
-        string courseCode = Console.ReadLine();
-        Console.WriteLine("Enter course name:");
-        string courseName = Console.ReadLine();
-        Console.WriteLine("Enter fees:");
-        decimal fees = decimal.Parse(Console.ReadLine());
-        Console.WriteLine("Enter duration:");
-        int duration = int.Parse(Console.ReadLine());
-        Console.WriteLine("Enter total seats:");
-        int total_seats = int.Parse(Console.ReadLine());
-        Console.WriteLine("Enter enroled seats:");
-        int enrolled_seats = int.Parse(Console.ReadLine());
+        new courses("cs123","python",123m,1,50,10),
+        new courses("cs154","java",123m,1,50,20),
+        new courses("cs187","dsa",200m,2,50,5),
+    };
+    
         
-        
-        courses course1 = new courses(courseCode, courseName, fees, duration,total_seats, enrolled_seats);
-        CoursesList.Add(course1);
-    }
     public static void displayCourses()
-    {
-        foreach (courses course in CoursesList)
-
-        {
-
-            Console.WriteLine("-------------------------");
-
-            Console.WriteLine($"Course Code: {course.Course_code}");
-
-            Console.WriteLine($"Course Name: {course.Course_name}");
-
-            Console.WriteLine($"Fees: {course.Fees}");
-
-            Console.WriteLine($"Duration: {course.Duration}");
-
-            Console.WriteLine($"Total Seats: {course.Total_seats}");
-
-            Console.WriteLine($"Enrolled Count: {course.Enrolled_count}");
-
-            Console.WriteLine($"available seats:{course.Total_seats-course.Enrolled_count}");
-            
-            Console.WriteLine("-------------------------");
-        }
-    }
-    public static courses GetCourseByCode(string courseCode)
 
     {
+        CoursesList.ForEach(course => Console.WriteLine(            
+            $"Course Code: {course.Course_code}\n" +
+            $"Course Name: {course.Course_name}\n" + 
+            $"Fees: {course.Fees}\n" + 
+            $"Duration: {course.Duration}\n" + 
+            $"Total Seats: {course.Total_seats}\n" + 
+            $"Enrolled Count: {course.Enrolled_count}\n" + 
+            $"available seats:{course.Total_seats - course.Enrolled_count}\n" + 
+            $"-----------------------------------------------------------"));      
+        
+        string[] lines = ["hygfd"];
+        List<string> d=new List<string>();
+        CoursesList.ForEach(course => d.Add(
+        
+            $"Course Code: {course.Course_code}\n" +
+            $"Course Name: {course.Course_name}\n" +
+            $"Fees: {course.Fees}\n" +
+            $"Duration: {course.Duration}\n" +
+            $"Total Seats: {course.Total_seats}\n" +
+            $"Enrolled Count: {course.Enrolled_count}\n" +
+            $"available seats:{course.Total_seats - course.Enrolled_count}\n" +
+            $"-----------------------------------------------------------"
+        ));
+        
 
-        return CoursesList.FirstOrDefault(
-
-            c => c.Course_code == courseCode
-
-        );
-
+        string path ="/Users/hrithik/hcl training/trainingmannagement/tms/files/courses.txt";
+        
+        File.WriteAllLines(path,d);
     }
+    
+    
+    public static courses? GetCourseByCode(string courseCode)
+    {
+        return CoursesList.FirstOrDefault(c => c.Course_code == courseCode);
+    }
+    
+    
     public  static void Searchcourse()
     {
-        bool courseavailablityFlag=false;
+        
         Console.Write("Search by course code:"); 
         string courseCode = Console.ReadLine();
-        for (int i = 0; i < CoursesList.Count; i++)
+        while (string.IsNullOrWhiteSpace(courseCode))
         {
-            if ((CoursesList[i].Course_code == courseCode) &&  (CoursesList[i].Total_seats > CoursesList[i].Enrolled_count))
-            {
-                courseavailablityFlag = true;
-                break;
-            }
+            Console.Write("invalid! Enter course code:");
+            courseCode = Console.ReadLine();
         }
 
+            
+
+        bool courseavailablityFlag=CoursesList.Where(cc => cc.Course_code == courseCode).Any();
         if (courseavailablityFlag)
         {
             Console.WriteLine("course available");
